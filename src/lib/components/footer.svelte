@@ -11,13 +11,13 @@
       </div>
     <div>
       <div class="grid grid-flow-col gap-4">
-        <a href="https://twitter.com">
+        <a href="https://twitter.com/cutups">
             <TwitterIcon />
           </a>
-          <a href="https://youtube.com">
+          <a href="https://www.youtube.com/channel/UClbLLXDdXBWyrKaoDE66I6g">
             <YouTubeIcon />
           </a>
-          <a href="https://facebook.com">
+          <a href="https://www.facebook.com/geoff.maddock/">
             <FacebookIcon />
           </a>
       </div>
