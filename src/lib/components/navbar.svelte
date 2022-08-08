@@ -1,5 +1,6 @@
 <script>
   import ThemeSelect from './theme-select.svelte'
+  import { session } from '$app/stores'
 </script>
 
 <div
@@ -24,6 +25,19 @@
       <a class="btn btn-ghost btn-sm rounded-btn" href="/about">
         About
       </a>
+      {#if !$session.user}
+      <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/login">
+        Login
+      </a>
+      <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/register">
+        Register
+      </a>
+      {/if}
+      {#if $session.user}
+      <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/logout">
+        Logout
+      </a>
+      {/if}
     </ul>
   </div>
 
@@ -36,6 +50,19 @@
         >Blog</a>
       <a class="btn btn-ghost btn-sm rounded-btn" href="/about"
         >About</a>
+        {#if !$session.user}
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/login">
+          Login
+        </a>
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/register">
+          Register
+        </a>
+        {/if}
+        {#if $session.user}
+        <a class="btn btn-ghost btn-sm rounded-btn" href="/auth/logout">
+          Logout
+        </a>
+        {/if}
       <div class="px-4">
         <ThemeSelect />
       </div>

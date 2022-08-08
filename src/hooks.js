@@ -9,29 +9,22 @@ const db = new Tedis({
 export async function handle({ event, resolve}) {
 
     const cookieHeader = event.request.headers.get('cookie')
-    console.log('cookieHeader')
-    console.log(cookieHeader)
     const cookies = cookie.parse(cookieHeader ?? '')
-    console.log(cookies)
 
     console.log('handle called')
 
     if (!cookies.session_id) {
-        console.log('no sessionId cookie')
         event.locals.authenticated = false
         const response = await resolve(event);
         return response
     }
     console.log(cookies.session_id)
-    console.log('before usersession')
     const userSession = JSON.parse(await db.get(cookies.session_id))
-    console.log(userSession)
-    console.log('after usersession')
 
     if (userSession) {
         event.locals.authenticated = true
-        event.locals.email = userSession.email
-        event.locals.name = userSession.name
+        event.locals.user = { email:userSession.email, name: userSession.name}
+
     } else {
         event.locals.authenticated = false
     }
@@ -43,13 +36,16 @@ export function getSession(event) {
 
     if (!event.locals.authenticated) {
         return {
-            authenticated: event.locals.authenticated
+            authenticated: false
         }
     } 
 
     return {
         authenticated: event.locals.authenticated,
-        email: event.locals.email,
-        name: event.locals.name
+        user: {
+            email: event.locals.user.email,
+            name: event.locals.user.name        
+        }
+
     }
 }

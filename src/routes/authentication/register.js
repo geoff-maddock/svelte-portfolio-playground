@@ -6,8 +6,12 @@ import { Tedis} from 'tedis'
 const db = new Tedis({host: "127.0.0.1", port: 6379})
 
 export async function POST({request}) {
-    const body = await request.json();
+    // const form = await request.formData()
+    // console.log('form: '+form)
+    console.log('posting to auth/register.js')
+    const body = await request.json()
 
+    console.log('body')
     console.log(body);
     const user = JSON.parse(await db.get(body.email))
 

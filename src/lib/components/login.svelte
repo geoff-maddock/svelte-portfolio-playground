@@ -20,7 +20,7 @@
     async function login() {
         error = undefined
         try {
-            const res = await fetch('/auth/login', {
+            const res = await fetch('/authentication/login', {
                 method: 'POST',
                 body: JSON.stringify({
                     email,
@@ -44,6 +44,6 @@
 </script>
 
 <h1>Login</h1>
-<input type="email" bind:value={email} placeholder="Enter your email" class="input w-full max-w-xs" minlength="3"/>
-<input type="password" bind:value={password} placeholder="Enter your password" class="input w-full max-w-xs" minlength="3"/>
+<input type="email" bind:value={email} placeholder="Enter your email" class="input-bordered input w-full max-w-xs" minlength="3"/>
+<input type="password" bind:value={password} placeholder="Enter your password" class=" input-bordered input w-full max-w-xs" minlength="3"/>
 <button on:click={login}  class="btn">Login</button>

@@ -8,7 +8,8 @@ const db = new Tedis({host: "127.0.0.1", port: 6379})
 export async function POST({request}) {
     
     const body = await request.json();
-
+    console.log('about to get user');
+    console.log(body)
     const user = JSON.parse(await db.get(body.email))
 
     if (!user) {
